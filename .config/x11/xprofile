@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# This file runs when a DM logs you into a graphical session.
+# If you use startx/xinit like a Chad, this file will also be sourced.
+[[ -f ~/.zshenv ]] && source ~/.zshenv
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources	# Uncomment to use Xresources colors/settings on startup
