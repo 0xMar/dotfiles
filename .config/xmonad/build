@@ -1,7 +1,7 @@
 # ~./.config/xmonad/build
 #!/bin/bash
 exec stack ghc -- \
-  --make xmonad.hs \
+  --make ./xmonad.hs \
   -i \
   -ilib \
   -fforce-recomp \

@@ -291,7 +291,7 @@ myTabTheme = def { fontName            = myFont
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
     { swn_font              = "xft:Ubuntu:bold:size=60"
-    , swn_fade              = 1.0
+    , swn_fade              = 0.2
     , swn_bgcolor           = "#1c1f24"
     , swn_color             = "#ffffff"
     }
@@ -374,14 +374,14 @@ myKeys =
 
     -- Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
-        , ("M-M1-a", spawn (myTerminal ++ " -e yay -Syu"))
+        , ("M-M1-a", spawn (myTerminal ++ " -e yay -Sua"))
         , ("M-M1-b", spawn (myBrowser))
         , ("M-M1-c", spawn (myTerminal ++ " -e cmus"))
         , ("M-M1-d", spawn "discord")
         , ("M-M1-f", spawn (myTerminal ++ " -e sh ./.config/vifm/scripts/vifmrun"))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
         , ("M-M1-l", spawn "slock")
-        , ("M-M1-s", spawn ("LD_PRELOAD=/usr/lib/spotify-adblock.so spotify"))
+        , ("M-M1-s", spawn ("env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify"))
         , ("M-M1-u", spawn (myTerminal ++ " -e sudo pacman -Syu"))
         , ("M-M1-y", spawn (myTerminal ++ " -e youtube-viewer -SV"))
 
@@ -509,7 +509,7 @@ main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
     xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc0"
-    -- xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmobar/xmobarrc1"
+    -- xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc1"
     -- xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.config/xmobar/xmobarrc2"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
