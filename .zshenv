@@ -66,6 +66,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 #export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd/.prettierrc.json"
 
 # Path
 path=("$HOME/.local/bin" "$path[@]")
