@@ -7,7 +7,7 @@ fi
 
 # npm packages global config path
 #NPM_PACKAGES="${XDG_DATA_HOME}/npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin:/home/victor/.local/share/cargo/bin"
+export PATH="$PATH:$NPM_PACKAGES/bin:/home/victor/.local/share/cargo/bin:/usr/local/go/bin"
 
 # If you come from bash you might have to change your $PATH.
 # export TERM="xterm-256color"
@@ -96,11 +96,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git
 	pass
     z
-    zsh-completions
     zsh-syntax-highlighting
     zsh-autosuggestions
     zsh-interactive-cd
 	)
+
+fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
 
 source $ZSH/oh-my-zsh.sh
 
