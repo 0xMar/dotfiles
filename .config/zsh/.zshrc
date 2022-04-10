@@ -9,6 +9,9 @@ fi
 #NPM_PACKAGES="${XDG_DATA_HOME}/npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin:/home/victor/.local/share/cargo/bin:/usr/local/go/bin"
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # If you come from bash you might have to change your $PATH.
 # export TERM="xterm-256color"
 export MYZSH="$HOME/.config/zsh/.zshrc"

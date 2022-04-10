@@ -12,6 +12,8 @@
 #PS1='[\u@\h \W]\$ '
 
 PATH="$HOME/.local/bin${PATH:+:${PATH}}"  # adding .local/bin to $PATH
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export TERM="xterm-256color"              # getting proper colors
 export HISTCONTROL=ignoredups:erasedups   # no duplicate entries
 #export ALTERNATE_EDITOR=""                # setting for emacsclient
