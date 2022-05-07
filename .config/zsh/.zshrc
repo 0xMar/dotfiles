@@ -102,6 +102,7 @@ plugins=(git
     zsh-syntax-highlighting
     zsh-autosuggestions
     zsh-interactive-cd
+    gitignore
 	)
 
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
