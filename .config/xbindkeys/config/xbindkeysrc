@@ -126,14 +126,14 @@
 ########################
 
 # Decrease brightness 10%
-"blight set -10%"
-    m:0x0 + c:68
-    F2
+#"blight set -10%"
+#    m:0x0 + c:68
+#    F2
 
 # Increase brightness 10%
-"blight set +10%"
-    m:0x0 + c:69
-    F3
+#"blight set +10%"
+#    m:0x0 + c:69
+#    F3
 
 ##################################
 # End of xbindkeys configuration #
