@@ -159,7 +159,7 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # vim
 alias vi='sudo nvim'
-alias vim=nvim
+# alias vim=nvim
 export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
 
 # youtubedl mp3 dowload
