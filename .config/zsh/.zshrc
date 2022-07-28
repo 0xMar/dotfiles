@@ -5,20 +5,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# npm packages global config path
-#NPM_PACKAGES="${XDG_DATA_HOME}/npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin:/$XDG_DATA_HOME/cargo/bin:/usr/local/go/bin"
+# export PATH="$PATH:$NPM_PACKAGES/bin:/$CARGO_HOME/bin:/usr/local/go/bin"
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # If you come from bash you might have to change your $PATH.
 # export TERM="xterm-256color"
-export MYZSH="$HOME/.config/zsh/.zshrc"
+# export MYZSH="$HOME/.config/zsh/.zshrc"
 
-export _Z_DATA="$HOME/.local/share/z"
+# export _Z_DATA="$HOME/.local/share/z"
 ## Path to your oh-my-zsh installation.
-export ZSH=$HOME/.config/oh-my-zsh
+# export ZSH=$HOME/.config/oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -103,6 +101,7 @@ plugins=(git
     zsh-autosuggestions
     zsh-interactive-cd
     gitignore
+    nvm
 	)
 
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
@@ -146,7 +145,7 @@ alias br='br -dhp'
 alias bs='br --sizes'
 
 ### SET BAT AS MANPAGER ###
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 ### SET VIM AS MANPAGER ###
 #export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
@@ -154,13 +153,13 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Preserve MANPATH if you already defined it somewhere in your config.
 # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+# export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 
 # vim
 alias vi='sudo nvim'
 # alias vim=nvim
-export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
+# export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
 
 # youtubedl mp3 dowload
 alias mp3="youtube-dl -f bestaudio -x --audio-format "mp3" --audio-quality 320k"
