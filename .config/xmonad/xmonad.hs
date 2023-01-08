@@ -105,16 +105,16 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     -- spawnOnce "lxsession &"
-    spawnOnce "picom --config /home/victor/.config/picom/picom.conf &"
-    -- spawnOnce "nm-applet &"
+    spawnOnce "picom --config /home/victor/.config/picom/picom.conf"
+    spawnOnce "nm-applet"
     -- spawnOnce "volumeicon &"
     -- spawnOnce "conky -c $HOME/.config/conky/xmonad.conkyrc &"
-    spawnOnce "xbindkeys -p -f /home/victor/.config/xbindkeys/config/xbindkeysrc &"
-    spawnOnce "xset r rate 300 50 &"
-    spawnOnce "setxkbmap -option caps:swapescape &"
-    spawnOnce "redshift &"
-    spawnOnce "play-with-mpv &"
-    -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
+    spawnOnce "xbindkeys -p -f /home/victor/.config/xbindkeys/config/xbindkeysrc"
+    spawnOnce "xset r rate 300 50"
+    spawnOnce "setxkbmap -option caps:swapescape"
+    spawnOnce "redshift"
+    spawnOnce "play-with-mpv"
+    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22"
     -- spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
     -- spawnOnce "kak -d -s mysession &"  -- kakoune daemon for better performance
     -- spawnOnce "urxvtd -q -o -f &"      -- urxvt daemon for better performance
@@ -123,9 +123,9 @@ myStartupHook = do
     -- spawnOnce "/bin/ls ~/wallpapers | shuf -n 1 | xargs xwallpaper --stretch"  -- set random xwallpaper
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
-    spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
-    spawnOnce "wal -R &"   -- -R restores the last colorscheme that was in use.
-    spawnOnce "xautolock -time 10 -corners -000 -locker slock &"
+    spawnOnce "nitrogen --restore"   -- if you prefer nitrogen to feh
+    spawnOnce "wal -R"   -- -R restores the last colorscheme that was in use.
+    spawnOnce "xautolock -time 10 -corners -000 -locker slock"
     setWMName "LG3D"
     setDefaultCursor xC_left_ptr
 
@@ -223,14 +223,6 @@ tall     = renamed [Replace "tall"]
            $ limitWindows 12
            $ mySpacing 8
            $ ResizableTall 1 (3/100) (1/2) []
-magno  = renamed [Replace "magno"]
-           $ smartBorders
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ magnifier
-           $ limitWindows 12
-           $ mySpacing 8
-           $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
            $ addTabs shrinkText myTabTheme
@@ -301,7 +293,6 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     withBorder myBorderWidth tall
-                                 ||| magno
                                  ||| noBorders monocle
                                  ||| floats
                                  ||| noBorders tabs
@@ -340,6 +331,8 @@ myManageHook = composeAll
      , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
      , className =? "discord"         --> doShift ( myWorkspaces !! 5 )
      , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
+     , className =? "vlc"             --> doShift ( myWorkspaces !! 7 )
+     , className =? "vlc"             --> doShift ( myWorkspaces !! 7 )
      , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
      , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
      , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
@@ -376,7 +369,7 @@ myKeys =
         , ("M-<Return>", spawn (myTerminal))
         , ("M-M1-a", spawn (myTerminal ++ " -e yay -Sua"))
         , ("M-M1-b", spawn (myBrowser))
-        , ("M-M1-c", spawn (myTerminal ++ " -e cmus"))
+        , ("M-M1-c", spawn ("qterminal -e cmus"))
         , ("M-M1-d", spawn "discord")
         , ("M-M1-f", spawn (myTerminal ++ " -e sh ./.config/vifm/scripts/vifmrun"))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
@@ -492,8 +485,8 @@ myKeys =
         , ("<XF86AudioPrev>", spawn (myTerminal ++ "mocp --previous"))
         , ("<XF86AudioNext>", spawn (myTerminal ++ "mocp --next"))
         , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-        , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 1%- unmute")
+        , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 1%+ unmute")
         , ("<XF86HomePage>", spawn "firefox https://www.youtube.com")
         , ("<XF86Search>", spawn "dmsearch")
         , ("<XF86Mail>", runOrRaise "thunderbird" (resource =? "thunderbird"))
@@ -510,7 +503,7 @@ main = do
     -- Launching three instances of xmobar on their monitors.
     xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc0"
     -- xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc1"
-    -- xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.config/xmobar/xmobarrc2"
+    -- xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.config/xmonad/xmobar/xmobarrc2"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook         = myManageHook <+> manageDocks
