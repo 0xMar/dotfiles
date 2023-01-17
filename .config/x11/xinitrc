@@ -50,4 +50,11 @@ fi
 
 [[ -f ~/.zshenv ]] && source ~/.zshenv
 
+setxkbmap -option caps:swapescape &
+xset r rate 300 50 &
+xbindkeys -p -f /home/victor/.config/xbindkeys/config/xbindkeysrc &
+nitrogen --restore &
+exec wal -R &
+exec xautolock -time 10 -corners -000 -locker slock &
+exec picom &
 exec xmonad
