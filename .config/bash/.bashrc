@@ -12,8 +12,8 @@
 #PS1='[\u@\h \W]\$ '
 
 PATH="$HOME/.local/bin${PATH:+:${PATH}}"  # adding .local/bin to $PATH
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export TERM="xterm-256color"              # getting proper colors
 export HISTCONTROL=ignoredups:erasedups   # no duplicate entries
 #export ALTERNATE_EDITOR=""                # setting for emacsclient
@@ -22,34 +22,34 @@ export HISTCONTROL=ignoredups:erasedups   # no duplicate entries
 export EDITOR="nvim"      # $EDITOR use Emacs in terminal
 export VISUAL="nvim"   # $VISUAL use Emacs in GUI mode
 
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 
-colors() {
-  local fgc bgc vals seq0
-
-  printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-  printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-  printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-  printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
-  # foreground colors
-  for fgc in {30..37}; do
-    # background colors
-    for bgc in {40..47}; do
-      fgc=${fgc#37} # white
-      bgc=${bgc#40} # black
-
-      vals="${fgc:+$fgc;}${bgc}"
-      vals=${vals%%;}
-
-      seq0="${vals:+\e[${vals}m}"
-      printf "  %-9s" "${seq0:-(default)}"
-      printf " ${seq0}TEXT\e[m"
-      printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-    done
-    echo; echo
-  done
-}
+# colors() {
+#   local fgc bgc vals seq0
+#
+#   printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+#   printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+#   printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+#   printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+#
+#   # foreground colors
+#   for fgc in {30..37}; do
+#     # background colors
+#     for bgc in {40..47}; do
+#       fgc=${fgc#37} # white
+#       bgc=${bgc#40} # black
+#
+#       vals="${fgc:+$fgc;}${bgc}"
+#       vals=${vals%%;}
+#
+#       seq0="${vals:+\e[${vals}m}"
+#       printf "  %-9s" "${seq0:-(default)}"
+#       printf " ${seq0}TEXT\e[m"
+#       printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+#     done
+#     echo; echo
+#   done
+# }
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
@@ -63,55 +63,55 @@ case ${TERM} in
     ;;
 esac
 
-use_color=true
+# use_color=true
 
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
 # instead of using /etc/DIR_COLORS.  Try to use the external file
 # first to take advantage of user additions.  Use internal bash
 # globbing instead of external grep binary.
-safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
-match_lhs=""
-[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
-[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
-[[ -z ${match_lhs}    ]] \
-  && type -P dircolors >/dev/null \
-  && match_lhs=$(dircolors --print-database)
-[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
+# safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
+# match_lhs=""
+# [[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+# [[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
+# [[ -z ${match_lhs}    ]] \
+#   && type -P dircolors >/dev/null \
+#   && match_lhs=$(dircolors --print-database)
+# [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
+#
+# if ${use_color} ; then
+#   # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+#   if type -P dircolors >/dev/null ; then
+#     if [[ -f ~/.dir_colors ]] ; then
+#       eval $(dircolors -b ~/.dir_colors)
+#     elif [[ -f /etc/DIR_COLORS ]] ; then
+#       eval $(dircolors -b /etc/DIR_COLORS)
+#     fi
+#   fi
+#
+#   if [[ ${EUID} == 0 ]] ; then
+#     PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+#   else
+#     PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+#   fi
+#
+#     grep='grep --colour=auto' \
+#     egrep='egrep --colour=auto' \
+#     fgrep='fgrep --colour=auto'
+# else
+#   if [[ ${EUID} == 0 ]] ; then
+#     # show root@ when we don't have colors
+#     PS1='\u@\h \W \$ '
+#   else
+#     PS1='\u@\h \w \$ '
+#   fi
+# fi
+#
+# unset use_color safe_term match_lhs sh
 
-if ${use_color} ; then
-  # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-  if type -P dircolors >/dev/null ; then
-    if [[ -f ~/.dir_colors ]] ; then
-      eval $(dircolors -b ~/.dir_colors)
-    elif [[ -f /etc/DIR_COLORS ]] ; then
-      eval $(dircolors -b /etc/DIR_COLORS)
-    fi
-  fi
+# xhost +local:root > /dev/null 2>&1
 
-  if [[ ${EUID} == 0 ]] ; then
-    PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
-  else
-    PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
-  fi
-
-    grep='grep --colour=auto' \
-    egrep='egrep --colour=auto' \
-    fgrep='fgrep --colour=auto'
-else
-  if [[ ${EUID} == 0 ]] ; then
-    # show root@ when we don't have colors
-    PS1='\u@\h \W \$ '
-  else
-    PS1='\u@\h \w \$ '
-  fi
-fi
-
-unset use_color safe_term match_lhs sh
-
-xhost +local:root > /dev/null 2>&1
-
-complete -cf sudo
+# complete -cf sudo
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
@@ -219,7 +219,7 @@ export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
 ### BASH POWERLINE ###
-source ~/.config/bash/.bash-powerline.sh
+# source ~/.config/bash/.bash-powerline.sh
 
 ### BROOT ###
 #source /home/dt/.config/broot/launcher/bash/br
@@ -238,4 +238,21 @@ source ~/.config/bash/.bash-powerline.sh
 ### RANDOM COLOR SCRIPT ###
 #/opt/shell-color-scripts/colorscript.sh random
 
-source $HOME/.config/broot/launcher/bash/br
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+# Not supported in the "fish" shell.
+(cat ~/.cache/wal/sequences &)
+
+# Alternative (blocks terminal for 0-3ms)
+cat ~/.cache/wal/sequences
+
+source "$HOME/.config/broot/launcher/bash/br"
+
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
