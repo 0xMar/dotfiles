@@ -60,34 +60,41 @@ __powerline() {
         printf " $ref$marks"
     }
 
-    ps1() {
-        # Check the exit code of the previous command and display different
-        # colors in the prompt accordingly. 
-        if [ $? -eq 0 ]; then
-            local symbol="$COLOR_SUCCESS $PS_SYMBOL $COLOR_RESET"
-        else
-            local symbol="$COLOR_FAILURE $PS_SYMBOL $COLOR_RESET"
-        fi
+    # ps1() {
+    #     # Check the exit code of the previous command and display different
+    #     # colors in the prompt accordingly. 
+    #     if [ $? -eq 0 ]; then
+    #         local symbol="$COLOR_SUCCESS $PS_SYMBOL $COLOR_RESET"
+    #     else
+    #         local symbol="$COLOR_FAILURE $PS_SYMBOL $COLOR_RESET"
+    #     fi
+    #
+    #     local cwd="$COLOR_CWD\w$COLOR_RESET"
+    #     # Bash by default expands the content of PS1 unless promptvars is disabled.
+    #     # We must use another layer of reference to prevent expanding any user
+    #     # provided strings, which would cause security issues.
+    #     # POC: https://github.com/njhartwell/pw3nage
+    #     # Related fix in git-bash: https://github.com/git/git/blob/9d77b0405ce6b471cb5ce3a904368fc25e55643d/contrib/completion/git-prompt.sh#L324
+    #     if shopt -q promptvars; then
+    #         __powerline_git_info="$(__git_info)"
+    #         local git="$COLOR_GIT\${__powerline_git_info}$COLOR_RESET"
+    #     else
+    #         # promptvars is disabled. Avoid creating unnecessary env var.
+    #         local git="$COLOR_GIT$(__git_info)$COLOR_RESET"
+    #     fi
+    #
+    #     PS1="$cwd$git$symbol"
+    # }
+    #
+    # PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+    function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
 
-        local cwd="$COLOR_CWD\w$COLOR_RESET"
-        # Bash by default expands the content of PS1 unless promptvars is disabled.
-        # We must use another layer of reference to prevent expanding any user
-        # provided strings, which would cause security issues.
-        # POC: https://github.com/njhartwell/pw3nage
-        # Related fix in git-bash: https://github.com/git/git/blob/9d77b0405ce6b471cb5ce3a904368fc25e55643d/contrib/completion/git-prompt.sh#L324
-        if shopt -q promptvars; then
-            __powerline_git_info="$(__git_info)"
-            local git="$COLOR_GIT\${__powerline_git_info}$COLOR_RESET"
-        else
-            # promptvars is disabled. Avoid creating unnecessary env var.
-            local git="$COLOR_GIT$(__git_info)$COLOR_RESET"
-        fi
-
-        PS1="$cwd$git$symbol"
-    }
-
-    PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 }
 
 __powerline
-unset __powerline
+# unset __powerline
