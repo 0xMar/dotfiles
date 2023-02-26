@@ -194,6 +194,7 @@ alias fgrep='fgrep --color=auto'
 
 # FZF
 #export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
@@ -219,7 +220,7 @@ source /usr/share/fzf/completion.zsh
 cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
+# source ~/.cache/wal/colors-tty.sh
 
 # pnpm
 export PNPM_HOME="/home/victor/.local/share/pnpm"
