@@ -1,0 +1,26 @@
+# Limit network video playback to 1080p, do not use VP9
+-f 'bestvideo[ext=mp4][height<=?1080][fps<=?60][vcodec!=?vp9]+bestaudio/best'
+
+# Output video format name
+-o /home/victor/Videos/Youtube/%(title)s.%(ext)s
+
+# Authentication with .netrc file
+--netrc
+
+# Write subtitles file
+# --write-subs
+
+# Subtitle format; accepts formats preference e.g. "srt" or "ass/srt/best"
+--sub-format "srt/best" 
+
+# Languages of the subtitles to download
+--sub-langs en.*,es.*
+
+# Embed subtitles in the video (only for mp4, webm and mkv videos)
+--embed-subs
+
+# --embed-metadata Embed metadata to the video file.
+# Also embeds chapters/infojson if present unless
+# --no-embed-chapters/--no-embed-info-json are
+# used (Alias: --add-metadata)
+--add-metadata
