@@ -44,6 +44,10 @@ packages:
 #
 extra-deps:
   - netlink-1.1.1.0
+  - cairo-0.13.8.2
+  - pango-0.13.8.2
+  - glib-0.13.8.2
+  - gtk2hs-buildtools-0.13.8.3
 
 # Override default flag values for local packages and extra-deps
 flags:
