@@ -199,8 +199,6 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
 
-source $HOME/.config/broot/launcher/bash/br
-
 ### SETS VI MODE ###
 bindkey -v
 export KEYTIMEOUT=1
@@ -226,3 +224,5 @@ cat ~/.cache/wal/sequences
 export PNPM_HOME="/home/victor/.local/share/pnpm"
 export PATH="$PATH:$PNPM_HOME"
 # pnpm end
+
+source /home/victor/.config/broot/launcher/bash/br
