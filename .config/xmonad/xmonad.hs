@@ -105,16 +105,18 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     -- spawnOnce "lxsession &"
-    -- spawnOnce "picom --config /home/victor/.config/picom/picom.conf"
-    -- spawnOnce "nm-applet"
-    -- spawnOnce "volumeicon &"
+    spawnOnce "dunst"
+    spawnOnce "udiskie"
+    spawnOnce "picom --legacy-backends"
+    spawnOnce "nm-applet"
+    spawnOnce "volumeicon"
     -- spawnOnce "conky -c $HOME/.config/conky/xmonad.conkyrc &"
-    -- spawnOnce "xbindkeys -p -f /home/victor/.config/xbindkeys/config/xbindkeysrc"
-    -- spawnOnce "xset r rate 300 50"
-    -- spawnOnce "setxkbmap -option caps:swapescape"
+    spawnOnce "xbindkeys -p -f /home/victor/.config/xbindkeys/config/xbindkeysrc"
+    spawnOnce "xset r rate 300 50"
+    spawnOnce "setxkbmap -option caps:swapescape"
     -- spawnOnce "redshift"
-    -- spawnOnce "play-with-mpv"
-    -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22"
+    spawnOnce "play-with-mpv"
+    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22"
     -- spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
     -- spawnOnce "kak -d -s mysession &"  -- kakoune daemon for better performance
     -- spawnOnce "urxvtd -q -o -f &"      -- urxvt daemon for better performance
@@ -123,9 +125,9 @@ myStartupHook = do
     -- spawnOnce "/bin/ls ~/wallpapers | shuf -n 1 | xargs xwallpaper --stretch"  -- set random xwallpaper
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
-    -- spawnOnce "nitrogen --restore"   -- if you prefer nitrogen to feh
-    -- spawnOnce "wal -R"   -- -R restores the last colorscheme that was in use.
-    -- spawnOnce "xautolock -time 10 -corners -000 -locker slock"
+    spawnOnce "nitrogen --restore"   -- if you prefer nitrogen to feh
+    spawnOnce "wal -R"   -- -R restores the last colorscheme that was in use.
+    spawnOnce "xautolock -time 10 -corners -000 -locker slock"
     setWMName "LG3D"
     setDefaultCursor xC_left_ptr
 
@@ -355,6 +357,7 @@ myKeys =
         , ("M-p a", spawn "dm-sounds")    -- choose an ambient background
         , ("M-p b", spawn "dm-setbg")     -- set a background
         , ("M-p c", spawn "dm-colpick")   -- pick color from our scheme
+        , ("M-p d", spawn "udiskie-dmenu")   -- pick color from our scheme
         , ("M-p e", spawn "dm-confedit")  -- edit config files
         , ("M-p i", spawn "dm-maim")      -- screenshots (images)
         , ("M-p k", spawn "dm-kill")      -- kill processes
