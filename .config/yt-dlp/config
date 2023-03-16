@@ -2,7 +2,10 @@
 -f 'bestvideo[ext=mp4][height<=?1080][fps<=?60][vcodec!=?vp9]+bestaudio/best'
 
 # Output video format name
--o /home/victor/Videos/Youtube/%(title)s.%(ext)s
+-o %(title)s.%(ext)s
+
+#The paths where the files should be
+-P /home/victor/Videos/Youtube/
 
 # Authentication with .netrc file
 --netrc
