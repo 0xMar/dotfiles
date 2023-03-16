@@ -128,6 +128,46 @@
 	  XF86AudioNext
 	# m:0x0 + c:171
 
+##############
+# CLEMENTINE #
+##############
+
+# Increase volume
+# "cmus-remote -v +10%"
+	# Alt+Mod4 + plus
+
+# Decrease volume
+# "cmus-remote -v -10%"
+	# Alt+Mod4 + minus
+
+# Player-prev
+"clementine -r"
+    Mod4 + bracketleft
+    # alt + a
+	  XF86AudioPrev
+	# m:0x0 + c:173
+
+# Player-Pause
+"clementine -t"
+    Mod4 + backslash
+    XF86AudioPause
+    XF86AudioPlay
+	# alt + s
+	# m:0x0 + c:172
+
+# Player-stop
+"clementine -s"
+    XF86AudioStop
+	# m:0x0 + c:174
+
+# Player-next
+"clementine -f"
+    Mod4 + bracketright
+    # alt + d
+	  XF86AudioNext
+	# m:0x0 + c:171
+
+
 
 ########################
 # Backlight Brightness #
