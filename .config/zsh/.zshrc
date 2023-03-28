@@ -102,6 +102,8 @@ plugins=(git
     zsh-interactive-cd
     gitignore
     nvm
+    poetry
+    fzf
 	)
 
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
@@ -204,6 +206,7 @@ bindkey -v
 export KEYTIMEOUT=1
 bindkey '^R' history-incremental-search-backward
 bindkey '^?' backward-delete-char
+bindkey "ã" fzf-cd-widget
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
