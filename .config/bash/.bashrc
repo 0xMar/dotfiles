@@ -1,4 +1,4 @@
-#
+#!/bash
 # ~/.bashrc
 #
 
@@ -11,16 +11,16 @@
 #alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
 
-PATH="$HOME/.local/bin${PATH:+:${PATH}}"  # adding .local/bin to $PATH
+PATH="/home/victor/.local/bin${PATH:+:${PATH}}" # adding .local/bin to $PATH
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-export TERM="xterm-256color"              # getting proper colors
-export HISTCONTROL=ignoredups:erasedups   # no duplicate entries
+export TERM="xterm-256color"            # getting proper colors
+export HISTCONTROL=ignoredups:erasedups # no duplicate entries
 #export ALTERNATE_EDITOR=""                # setting for emacsclient
 #export EDITOR="emacsclient -t -a ''"      # $EDITOR use Emacs in terminal
 #export VISUAL="emacsclient -c -a emacs"   # $VISUAL use Emacs in GUI mode
-export EDITOR="nvim"      # $EDITOR use Emacs in terminal
-export VISUAL="nvim"   # $VISUAL use Emacs in GUI mode
+export EDITOR="nvim" # $EDITOR use Emacs in terminal
+export VISUAL="nvim" # $VISUAL use Emacs in GUI mode
 
 # [[ $- != *i* ]] && return
 
@@ -51,16 +51,18 @@ export VISUAL="nvim"   # $VISUAL use Emacs in GUI mode
 #   done
 # }
 
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash-completion ]] &&
+	. /usr/share/bash-completion/bash_completion
 
 # Change the window title of X terminals
 case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-        ;;
-  screen*)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-    ;;
+xterm* | rxvt* | Eterm* | aterm | kterm | gnome* | interix | konsole*)
+	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+	;;
+screen*)
+	PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+	;;
 esac
 
 # use_color=true
@@ -129,26 +131,25 @@ shopt -s histappend
 #
 # # ex - archive extractor
 # # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+ex() {
+	if [ -f "$1" ]; then
+		case $1 in
+		*.tar.bz2) tar xjf "$1" ;;
+		*.tar.gz) tar xzf "$1" ;;
+		*.bz2) bunzip2 "$1" ;;
+		*.rar) unrar x "$1" ;;
+		*.gz) gunzip "$1" ;;
+		*.tar) tar xf "$1" ;;
+		*.tbz2) tar xjf "$1" ;;
+		*.tgz) tar xzf "$1" ;;
+		*.zip) unzip "$1" ;;
+		*.Z) uncompress "$1" ;;
+		*.7z) 7z x "$1" ;;
+		*) echo "'$1' cannot be extracted via ex()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
 }
 
 ### ALIASES ###
@@ -172,7 +173,7 @@ alias vim=nvim
 #alias zathura="devour zathura"
 
 # youtubedl mp3 dowload
-alias mp3="youtube-dl -f bestaudio -x --audio-format "mp3" --audio-quality 320k"
+alias mp3="youtube-dl -f bestaudio -x --audio-format 'mp3' --audio-quality 320k"
 
 # youtubedl check to avoid repeat items of list
 alias mp3CheckList='for n in *.mp3
@@ -195,9 +196,9 @@ alias ll='exa -l --color=always --group-directories-first'  # long format
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
 
 # adding flags
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+alias cp="cp -i"     # confirm before overwriting something
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
 #alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
 alias vifm='./.config/vifm/scripts/vifmrun'
 
@@ -242,17 +243,17 @@ export MANWIDTH=999
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
 # Not supported in the "fish" shell.
-(cat ~/.cache/wal/sequences &)
+# (cat ~/.cache/wal/sequences &)
 
 # Alternative (blocks terminal for 0-3ms)
-cat ~/.cache/wal/sequences
+# cat ~/.cache/wal/sequences
 
-source "$HOME/.config/broot/launcher/bash/br"
+source "/home/victor/.config/broot/launcher/bash/br"
 
 function _update_ps1() {
-    PS1=$(powerline-shell $?)
+	PS1=$(powerline-shell $?)
 }
 
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
