@@ -1,8 +1,8 @@
-#
+#!/bash
 # ~/.bash_profile
 #
 
-[[ -f ~/.config/bash/.bashrc ]] && . ~/.config/bash/.bashrc
+[[ -f /home/victor/.config/bash/.bashrc ]] && . /home/victor/.config/bash/.bashrc
 
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
@@ -25,7 +25,7 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-source $HOME/.config/broot/launcher/bash/br
+source /home/victor/.config/broot/launcher/bash/br
 
 if [[ "$(tty)" = "/dev/tty1" ]]; then
 	pgrep qtile || startx "$XDG_CONFIG_HOME/X11/xinitrc"
