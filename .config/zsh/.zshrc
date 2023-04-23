@@ -138,6 +138,10 @@ source $ZSH/oh-my-zsh.sh
 ### ALIASES ###
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
+# crunchy-cli
+alias crdown='crunchy-cli download -o "S{season_number}E{episode_number} - {title}.mkv" -a ja-JP -s es-419'
+alias crarch='crunchy-cli archive -o "S{season_number}E{episode_number} - {title}.mkv" -l ja-JP -s es-419'
+
 # root privileges
 #alias doas="doas --"
 alias _=sudo
@@ -215,10 +219,10 @@ source /usr/share/fzf/completion.zsh
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
 # Not supported in the "fish" shell.
-(cat ~/.cache/wal/sequences &)
+# (cat ~/.cache/wal/sequences &)
 
 # Alternative (blocks terminal for 0-3ms)
-cat ~/.cache/wal/sequences
+# cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
 # source ~/.cache/wal/colors-tty.sh
@@ -226,6 +230,5 @@ cat ~/.cache/wal/sequences
 # pnpm
 export PNPM_HOME="/home/victor/.local/share/pnpm"
 export PATH="$PATH:$PNPM_HOME"
-# pnpm end
 
 source /home/victor/.config/broot/launcher/bash/br
