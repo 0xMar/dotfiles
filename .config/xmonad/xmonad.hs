@@ -68,8 +68,6 @@ import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Cursor
 
-import Colors
-
 myFont :: String
 myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
 
@@ -77,14 +75,11 @@ myModMask :: KeyMask
 myModMask = mod4Mask        -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "xterm"    -- Sets default terminal
+myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
 -- myBrowser = "qutebrowser "  -- Sets qutebrowser as browser
 myBrowser = "brave"  -- Sets qutebrowser as browser
-
--- myEmacs :: String
--- myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
 
 myEditor :: String
 -- myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
@@ -110,23 +105,13 @@ myStartupHook = do
     spawnOnce "picom --legacy-backends"
     spawnOnce "nm-applet"
     spawnOnce "volumeicon"
-    -- spawnOnce "conky -c $HOME/.config/conky/xmonad.conkyrc &"
     spawnOnce "xbindkeys -p -f /home/victor/.config/xbindkeys/config/xbindkeysrc"
     spawnOnce "xset r rate 300 50"
     spawnOnce "setxkbmap -option caps:swapescape"
-    -- spawnOnce "redshift"
     spawnOnce "play-with-mpv"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22"
-    -- spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
-    -- spawnOnce "kak -d -s mysession &"  -- kakoune daemon for better performance
-    -- spawnOnce "urxvtd -q -o -f &"      -- urxvt daemon for better performance
-
-    -- spawnOnce "xargs xwallpaper --stretch < ~/.xwallpaper"  -- set last saved with xwallpaper
-    -- spawnOnce "/bin/ls ~/wallpapers | shuf -n 1 | xargs xwallpaper --stretch"  -- set random xwallpaper
-    -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-    -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
     spawnOnce "nitrogen --restore"   -- if you prefer nitrogen to feh
-    spawnOnce "wal -R"   -- -R restores the last colorscheme that was in use.
+    -- spawnOnce "wal -R"   -- -R restores the last colorscheme that was in use.
     spawnOnce "xautolock -time 10 -corners -000 -locker slock"
     setWMName "LG3D"
     setDefaultCursor xC_left_ptr
@@ -139,73 +124,7 @@ myColorizer = colorRangeFromClassName
                   (0xc0,0xa7,0x9a) -- inactive fg
                   (0x28,0x2c,0x34) -- active fg
 
--- gridSelect menu layout
--- mygridConfig :: p -> GSConfig Window
--- mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
---     { gs_cellheight   = 40
---     , gs_cellwidth    = 200
---     , gs_cellpadding  = 6
---     , gs_originFractX = 0.5
---     , gs_originFractY = 0.5
---     , gs_font         = myFont
---     }
---
--- spawnSelected' :: [(String, String)] -> X ()
--- spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
---     where conf = def
---                    { gs_cellheight   = 40
---                    , gs_cellwidth    = 200
---                    , gs_cellpadding  = 6
---                    , gs_originFractX = 0.5
---                    , gs_originFractY = 0.5
---                    , gs_font         = myFont
---                    }
---
--- myAppGrid = [ ("Audacity", "audacity")
---                  , ("Deadbeef", "deadbeef")
---                  , ("Emacs", "emacsclient -c -a emacs")
---                  , ("Firefox", "firefox")
---                  , ("Geany", "geany")
---                  , ("Geary", "geary")
---                  , ("Gimp", "gimp")
---                  , ("Kdenlive", "kdenlive")
---                  , ("LibreOffice Impress", "loimpress")
---                  , ("LibreOffice Writer", "lowriter")
---                  , ("OBS", "obs")
---                  , ("PCManFM", "pcmanfm")
---                  ]
---
--- myScratchPads :: [NamedScratchpad]
--- myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
---                 , NS "mocp" spawnMocp findMocp manageMocp
---                 , NS "calculator" spawnCalc findCalc manageCalc
---                 ]
---   where
---     spawnTerm  = myTerminal ++ " -t scratchpad"
---     findTerm   = title =? "scratchpad"
---     manageTerm = customFloating $ W.RationalRect l t w h
---                where
---                  h = 0.9
---                  w = 0.9
---                  t = 0.95 -h
---                  l = 0.95 -w
---     spawnMocp  = myTerminal ++ " -t mocp -e mocp"
---     findMocp   = title =? "mocp"
---     manageMocp = customFloating $ W.RationalRect l t w h
---                where
---                  h = 0.9
---                  w = 0.9
---                  t = 0.95 -h
---                  l = 0.95 -w
---     spawnCalc  = "qalculate-gtk"
---     findCalc   = className =? "Qalculate-gtk"
---     manageCalc = customFloating $ W.RationalRect l t w h
---                where
---                  h = 0.5
---                  w = 0.4
---                  t = 0.75 -h
---                  l = 0.70 -w
---
+
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -372,7 +291,7 @@ myKeys =
         , ("M-<Return>", spawn (myTerminal))
         , ("M-M1-a", spawn (myTerminal ++ " -e yay -Sua"))
         , ("M-M1-b", spawn (myBrowser))
-        , ("M-M1-c", spawn (myTerminal ++ " -e cmus"))
+        , ("M-M1-c", spawn (myTerminal ++ " -e mocp"))
         , ("M-M1-d", spawn "discord")
         , ("M-M1-f", spawn (myTerminal ++ " -e sh ./.config/vifm/scripts/vifmrun"))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
@@ -401,11 +320,6 @@ myKeys =
         , ("C-M1-k", incWindowSpacing 4)         -- Increase window spacing
         , ("C-M1-h", decScreenSpacing 4)         -- Decrease screen spacing
         , ("C-M1-l", incScreenSpacing 4)         -- Increase screen spacing
-
-    -- Grid Select (CTR-g followed by a key)
-        -- , ("C-g g", spawnSelected' myAppGrid)                 -- grid select favorite apps
-        -- , ("C-g t", goToSelected $ mygridConfig myColorizer)  -- goto selected window
-        -- , ("C-g b", bringSelected $ mygridConfig myColorizer) -- bring selected window
 
     -- Windows navigation
         , ("M-m", windows W.focusMaster)  -- Move focus to the master window
@@ -446,60 +360,12 @@ myKeys =
         , ("M-C-.", onGroup W.focusUp')    -- Switch focus to next tab
         , ("M-C-,", onGroup W.focusDown')  -- Switch focus to prev tab
 
-    -- Scratchpads
-    -- Toggle show/hide these programs.  They run on a hidden workspace.
-    -- When you toggle them to show, it brings them to your current workspace.
-    -- Toggle them to hide and it sends them back to hidden workspace (NSP).
-        -- , ("C-s t", namedScratchpadAction myScratchPads "terminal")
-        -- , ("C-s m", namedScratchpadAction myScratchPads "mocp")
-        -- , ("C-s c", namedScratchpadAction myScratchPads "calculator")
-
-    -- Set wallpaper with 'feh'. Type 'SUPER+F1' to launch sxiv in the wallpapers directory.
-    -- Then in sxiv, type 'C-x w' to set the wallpaper that you choose.
-        -- , ("M-<F1>", spawn "sxiv -r -q -t -o ~/wallpapers/*")
-        -- , ("M-<F2>", spawn "/bin/ls ~/wallpapers | shuf -n 1 | xargs xwallpaper --stretch")
-        --, ("M-<F2>", spawn "feh --randomize --bg-fill ~/wallpapers/*")
-
     -- Controls for mocp music player (SUPER-u followed by a key)
-        -- , ("M-u p", spawn "mocp --play")
-        -- , ("M-u l", spawn "mocp --next")
-        -- , ("M-u h", spawn "mocp --previous")
-        -- , ("M-u <Space>", spawn "mocp --toggle-pause")
-
-    -- Emacs (CTRL-e followed by a key)
-        -- , ("C-e e", spawn myEmacs)                 -- start emacs
-        -- , ("C-e e", spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))   -- emacs dashboard
-        -- , ("C-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))   -- list buffers
-        -- , ("C-e d", spawn (myEmacs ++ ("--eval '(dired nil)'"))) -- dired
-        -- , ("C-e i", spawn (myEmacs ++ ("--eval '(erc)'")))       -- erc irc client
-        -- , ("C-e m", spawn (myEmacs ++ ("--eval '(mu4e)'")))      -- mu4e email
-        -- , ("C-e n", spawn (myEmacs ++ ("--eval '(elfeed)'")))    -- elfeed rss
-        -- , ("C-e s", spawn (myEmacs ++ ("--eval '(eshell)'")))    -- eshell
-        -- , ("C-e t", spawn (myEmacs ++ ("--eval '(mastodon)'")))  -- mastodon.el
-        -- -- , ("C-e v", spawn (myEmacs ++ ("--eval '(vterm nil)'"))) -- vterm if on GNU Emacs
-        -- , ("C-e v", spawn (myEmacs ++ ("--eval '(+vterm/here nil)'"))) -- vterm if on Doom Emacs
-        -- -- , ("C-e w", spawn (myEmacs ++ ("--eval '(eww \"distrotube.com\")'"))) -- eww browser if on GNU Emacs
-        -- , ("C-e w", spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"distrotube.com\"))'"))) -- eww browser if on Doom Emacs
-        -- -- emms is an emacs audio player. I set it to auto start playing in a specific directory.
-        -- , ("C-e a", spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")))
-
-    -- Multimedia Keys
-        -- , ("<XF86AudioPlay>", spawn (myTerminal ++ "mocp --play"))
-        -- , ("<XF86AudioPrev>", spawn (myTerminal ++ "mocp --previous"))
-        -- , ("<XF86AudioNext>", spawn (myTerminal ++ "mocp --next"))
-        -- , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        -- , ("<XF86AudioLowerVolume>", spawn "amixer set Master 1%- unmute")
-        -- , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 1%+ unmute")
-        -- , ("<XF86HomePage>", spawn "firefox https://www.youtube.com")
-        -- , ("<XF86Search>", spawn "dmsearch")
-        -- , ("<XF86Mail>", runOrRaise "thunderbird" (resource =? "thunderbird"))
-        -- , ("<XF86Calculator>", runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
-        -- , ("<XF86Eject>", spawn "toggleeject")
-        -- , ("<Print>", spawn "dmscrot")
+        , ("M-u p", spawn "mocp --play")
+        , ("M-u l", spawn "mocp --next")
+        , ("M-u h", spawn "mocp --previous")
+        , ("M-u <Space>", spawn "mocp --toggle-pause")
         ]
-    -- The following lines are needed for named scratchpads.
-          -- where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
-                -- nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
 
 main :: IO ()
 main = do
