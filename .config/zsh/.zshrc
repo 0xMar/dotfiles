@@ -140,7 +140,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # crunchy-cli
 alias crdown='crunchy-cli download -o "S{season_number}E{episode_number} - {title}.mkv" -a ja-JP -s es-419'
-alias crarch='crunchy-cli archive -o "S{season_number}E{episode_number} - {title}.mkv" -l ja-JP -s es-419'
+alias crarch='crunchy-cli archive -o "S{season_number}E{episode_number} - {title}.mkv" -a ja-JP -s es-419'
 
 # root privileges
 #alias doas="doas --"
