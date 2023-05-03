@@ -281,7 +281,8 @@ myKeys =
         , ("M-p i", spawn "dm-maim")      -- screenshots (images)
         , ("M-p k", spawn "dm-kill")      -- kill processes
         , ("M-p m", spawn "dm-man")       -- manpages
-        , ("M-p o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
+        -- , ("M-p o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
+        , ("M-p o", spawn "passmenu-otp")   -- passmenu-otp
         , ("M-p p", spawn "passmenu")     -- passmenu
         , ("M-p q", spawn "dm-logout")    -- logout menu
         , ("M-p r", spawn "dm-reddit")    -- reddio (a reddit viewer)
