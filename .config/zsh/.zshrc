@@ -7,8 +7,8 @@ fi
 
 # export PATH="$PATH:$NPM_PACKAGES/bin:/$CARGO_HOME/bin:/usr/local/go/bin"
 
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # If you come from bash you might have to change your $PATH.
 # export TERM="xterm-256color"
@@ -101,9 +101,9 @@ plugins=(git
     zsh-autosuggestions
     zsh-interactive-cd
     gitignore
-    nvm
-    poetry
-    fzf
+    # nvm
+    # poetry
+    # fzf
 	)
 
 fpath+="${ZSH_CUSTOM:-"$ZSH/custom"}/plugins/zsh-completions/src"
