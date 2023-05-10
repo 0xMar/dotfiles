@@ -145,6 +145,7 @@ alias crarch='crunchy-cli archive -o "S{season_number}E{episode_number} - {title
 # root privileges
 #alias doas="doas --"
 alias _=sudo
+alias cl='clear'
 
 # broot
 alias br='br -dhp'
