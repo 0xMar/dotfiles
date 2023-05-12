@@ -36,6 +36,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=() ZLE_RPROMPT_INDENT=0
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_TMUX_CONFIG="/home/victor/.config/tmux/tmux.conf"
+ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT="true"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -101,6 +103,7 @@ plugins=(git
     zsh-autosuggestions
     zsh-interactive-cd
     gitignore
+    tmux
     # nvm
     # poetry
     # fzf
@@ -232,4 +235,5 @@ source /usr/share/fzf/completion.zsh
 export PNPM_HOME="/home/victor/.local/share/pnpm"
 export PATH="$PATH:$PNPM_HOME"
 
+source "${ZSH_CUSTOM:-~/.zsh}/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
 source /home/victor/.config/broot/launcher/bash/br
