@@ -76,7 +76,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
 
 # Path
-path=("$HOME/.local/bin" "$NPM_PACKAGES/bin:/$CARGO_HOME/bin" "/usr/local/go/bin/go" "$path[@]")
+path=("$HOME/.local/bin" "$NPM_PACKAGES/bin:/$CARGO_HOME/bin" "/usr/local/go/bin" "$path[@]")
 export PATH
 
 # This is the list for lf icons:
