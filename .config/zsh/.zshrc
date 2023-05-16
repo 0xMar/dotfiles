@@ -145,6 +145,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias crdown='crunchy-cli download -o "S{season_number}E{episode_number} - {title}.mkv" -a ja-JP -s es-419'
 alias crarch='crunchy-cli archive -o "S{season_number}E{episode_number} - {title}.mkv" -a ja-JP -s es-419'
 
+#MOCP
+alias mocp='mocp -M ${XDG_CONFIG_HOME}/moc'
+
 # root privileges
 #alias doas="doas --"
 alias _=sudo
@@ -171,8 +174,11 @@ alias vi='sudo nvim'
 # alias vim=nvim
 # export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
 
+# yarn custom location
+alias yarn='yarn --use-yarnrc ${XDG_CONFIG_HOME}/yarn/config'
+
 # youtubedl mp3 dowload
-alias mp3="youtube-dl -f bestaudio -x --audio-format "mp3" --audio-quality 320k"
+alias mp3='youtube-dl -f bestaudio -x --audio-format "mp3" --audio-quality 320k'
 
 # youtubedl check to avoid repeat items of list
 alias mp3CheckList='for n in *.mp3
@@ -195,7 +201,7 @@ alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='duf'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias vifm='$XDG_CONFIG_HOME/vifm/scripts/vifmrun'
+alias vifm='${XDG_CONFIG_HOME}/vifm/scripts/vifmrun'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -231,9 +237,5 @@ source /usr/share/fzf/completion.zsh
 # To add support for TTYs this line can be optionally added.
 # source ~/.cache/wal/colors-tty.sh
 
-# pnpm
-export PNPM_HOME="/home/victor/.local/share/pnpm"
-export PATH="$PATH:$PNPM_HOME"
-
-source "${ZSH_CUSTOM:-~/.zsh}/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
+source ${ZSH_CUSTOM:-~/.zsh}/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
 source /home/victor/.config/broot/launcher/bash/br
