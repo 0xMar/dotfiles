@@ -145,9 +145,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias crdown='crunchy-cli download -o "S{season_number}E{episode_number} - {title}.mkv" -a ja-JP -s es-419'
 alias crarch='crunchy-cli archive -o "S{season_number}E{episode_number} - {title}.mkv" -a ja-JP -s es-419'
 
-#MOCP
-alias mocp='mocp -M ${XDG_CONFIG_HOME}/moc'
-
 # root privileges
 #alias doas="doas --"
 alias _=sudo
