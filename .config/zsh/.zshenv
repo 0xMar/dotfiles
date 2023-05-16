@@ -75,7 +75,6 @@ export _Z_DATA="$XDG_DATA_HOME/z"
 export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
@@ -83,6 +82,7 @@ export PYTHONSTARTUP="/etc/python/pythonrc"
 export STACK_ROOT="$XDG_DATA_HOME/stack"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export SSB_HOME="$XDG_DATA_HOME"/zoom
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 
 # Path
 path=("$HOME/.local/bin" "$NPM_PACKAGES/bin:/$CARGO_HOME/bin" "/usr/local/go/bin" "$path[@]")
