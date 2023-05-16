@@ -19,8 +19,10 @@ export WM="xmonad"
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
 # Doesn't seem to work
+export ANDROID_HOME="$XDG_DATA_HOME/android"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export ANDROID_AVD_HOME="$XDG_DATA_HOME/android"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android"
@@ -39,7 +41,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NPM_PACKAGES="$XDG_DATA_HOME/npm-packages"
 export GOPATH="$XDG_DATA_HOME/go/bin"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-# export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
@@ -51,7 +53,7 @@ export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export PNPM_HOME="/home/victor/.local/share/pnpm"
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
 # Other program settings:
 export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
@@ -68,12 +70,19 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd/.prettierrc.json"
-export MYZSH="$HOME/.config/zsh/.zshrc"
-export _Z_DATA="$HOME/.local/share/z"
-export ZSH=$HOME/.config/oh-my-zsh
+export MYZSH="$XDG_CONFIG_HOME/zsh/.zshrc"
+export _Z_DATA="$XDG_DATA_HOME/z"
+export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
+export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+export PYTHONSTARTUP="/etc/python/pythonrc"
+export STACK_ROOT="$XDG_DATA_HOME/stack"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export SSB_HOME="$XDG_DATA_HOME"/zoom
 
 # Path
 path=("$HOME/.local/bin" "$NPM_PACKAGES/bin:/$CARGO_HOME/bin" "/usr/local/go/bin" "$path[@]")
