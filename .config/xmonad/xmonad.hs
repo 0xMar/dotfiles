@@ -290,9 +290,10 @@ myKeys =
 
     -- Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
+        , ("M-C-<Return>", spawn (myTerminal ++ " msg create-window"))
         , ("M-M1-a", spawn (myTerminal ++ " -e yay -Sua"))
         , ("M-M1-b", spawn (myBrowser))
-        , ("M-M1-c", spawn (myTerminal ++ " -e mocp"))
+        , ("M-M1-c", spawn (myTerminal ++ " msg create-window -e mocp"))
         , ("M-M1-d", spawn "discord")
         , ("M-M1-f", spawn (myTerminal ++ " -e sh ./.config/vifm/scripts/vifmrun"))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
