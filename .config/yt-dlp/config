@@ -5,7 +5,7 @@
 -o %(title)s.%(ext)s
 
 #The paths where the files should be
--P /home/victor/Videos/Youtube/
+-P ${HOME}/Videos/Youtube/
 
 # Authentication with .netrc file
 --netrc
