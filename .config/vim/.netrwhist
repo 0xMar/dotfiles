@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/victor'
+let g:netrw_dirhist_2='/home/victor/Documents/projects/blog-tutorial/app/routes/posts/admin'
+let g:netrw_dirhist_1='/home/victor/Documents/projects/blog-tutorial/app/routes/posts'
+let g:netrw_dirhist_0='/home/victor/Documents/projects/blog-tutorial/app/routes'
+let g:netrw_dirhist_9='/home/victor/Documents/projects/blog-tutorial/app'
+let g:netrw_dirhist_8='/home/victor/Documents/projects/blog-tutorial'
+let g:netrw_dirhist_7='/home/victor/.config/nvim'
+let g:netrw_dirhist_6='/home/victor/.config/nvim/lua'
+let g:netrw_dirhist_5='/home/victor/.config/nvim'
+let g:netrw_dirhist_4='/home/victor/.config/nvim/lua'
