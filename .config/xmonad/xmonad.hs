@@ -83,7 +83,7 @@ myBrowser = "brave"  -- Sets qutebrowser as browser
 
 myEditor :: String
 -- myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
-myEditor = myTerminal ++ " -e nvim "    -- Sets vim as editor
+myEditor = myTerminal ++ " msg create-window -e nvim "    -- Sets vim as editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
@@ -291,16 +291,16 @@ myKeys =
     -- Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
         , ("M-C-<Return>", spawn (myTerminal ++ " msg create-window"))
-        , ("M-M1-a", spawn (myTerminal ++ " -e yay -Sua"))
+        , ("M-M1-a", spawn (myTerminal ++ " msg create-window -e yay -Sua"))
         , ("M-M1-b", spawn (myBrowser))
         , ("M-M1-c", spawn (myTerminal ++ " msg create-window -e mocp"))
         , ("M-M1-d", spawn "discord")
-        , ("M-M1-f", spawn (myTerminal ++ " -e sh ./.config/vifm/scripts/vifmrun"))
-        , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
+        , ("M-M1-f", spawn (myTerminal ++ " msg create-window -e sh ./.config/vifm/scripts/vifmrun"))
+        , ("M-M1-h", spawn (myTerminal ++ " msg create-window -e htop"))
         , ("M-M1-l", spawn "slock")
         , ("M-M1-s", spawn ("env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify"))
-        , ("M-M1-u", spawn (myTerminal ++ " -e sudo pacman -Syu"))
-        , ("M-M1-y", spawn (myTerminal ++ " -e youtube-viewer -SV"))
+        , ("M-M1-u", spawn (myTerminal ++ " msg create-window -e sudo pacman -Syu"))
+        , ("M-M1-y", spawn (myTerminal ++ " msg create-window -e youtube-viewer -SV"))
 
     -- Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client
