@@ -276,17 +276,17 @@ myKeys =
         , ("M-p a", spawn "dm-sounds")    -- choose an ambient background
         , ("M-p b", spawn "dm-setbg")     -- set a background
         , ("M-p c", spawn "dm-colpick")   -- pick color from our scheme
-        , ("M-p d", spawn "udiskie-dmenu")   -- pick color from our scheme
+        , ("M-p d", spawn "udiskie-dmenu")   -- Manage removable devices in couple of keystrokes
         , ("M-p e", spawn "dm-confedit")  -- edit config files
         , ("M-p i", spawn "dm-maim")      -- screenshots (images)
         , ("M-p k", spawn "dm-kill")      -- kill processes
         , ("M-p m", spawn "dm-man")       -- manpages
-        -- , ("M-p o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
         , ("M-p o", spawn "passmenu-otp")   -- passmenu-otp
         , ("M-p p", spawn "passmenu")     -- passmenu
         , ("M-p q", spawn "dm-logout")    -- logout menu
         , ("M-p r", spawn "dm-reddit")    -- reddio (a reddit viewer)
-        , ("M-p s", spawn "dm-websearch") -- search various search engines
+        -- , ("M-p s", spawn "dm-websearch") -- search various search engines
+        , ("M-p s", spawn "dm-qrscan")   -- scan qr code
 
     -- Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
