@@ -1,5 +1,5 @@
 # Limit network video playback to 1080p, do not use VP9
--f 'bestvideo[ext=mp4][height<=?1080][fps<=?60][vcodec!=?vp9]+bestaudio/best'
+-f 'bestvideo[ext=mp4][height<=?1080][fps<=?60][vcodec!^=vp]+bestaudio/best'
 
 # Output video format name
 -o %(title)s.%(ext)s
@@ -27,3 +27,9 @@
 # --no-embed-chapters/--no-embed-info-json are
 # used (Alias: --add-metadata)
 --add-metadata
+
+# Containers that may be used when merging
+# formats, separated by "/", e.g. "mp4/mkv".
+# Ignored if no merge is required. (currently
+# supported: avi, flv, mkv, mov, mp4, webm)
+--merge-output-format "mkv/mp4"
