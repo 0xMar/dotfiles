@@ -1,5 +1,5 @@
 # Limit network video playback to 1080p, do not use VP9
--f 'bestvideo[ext=mp4][height<=?1080][fps<=?60][vcodec!^=vp]+bestaudio/best'
+-f 'bestvideo[ext=mp4][height<=?1080][fps<=?60][vcodec^=avc1]+bestaudio/best'
 
 # Output video format name
 -o %(title)s.%(ext)s
